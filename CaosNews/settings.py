@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'axes',
     'captcha',
-    'cloudinary_storage',
+    'cloudinary',
 ]
 
 
