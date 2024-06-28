@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 #MEDIA CONFIG
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +55,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'axes',
     'captcha',
+    'cloudinary_storage',
 ]
 
 
@@ -193,3 +198,11 @@ LOGOUT_REDIRECT_URL = '/'
 
 #vercel
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'divetnw1u',
+    'API_KEY': '845398179644377',
+    'API_SECRET': 'EbrkquL8QgYA5dNLsmXagPh_Pl4'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
