@@ -1,0 +1,128 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link active">Apóyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0 float-end" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+
+{% block principal %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Sección de agradecimiento -->
+            <div class="text-center bg-light py-4 mb-4 rounded shadow">
+                <h2 class="text-uppercase font-weight-bold m-0">¡Gracias por tu apoyo!</h2>
+                <p class="lead">Tu contribución nos permite seguir creciendo y ofrecerte contenido exclusivo.</p>
+            </div>
+            
+            <!-- Contenedor de tarjetas -->
+            <div class="row justify-content-center">
+                <!-- Tier 1 -->
+                <div class="col-lg-4 mb-4 d-flex">
+                    <div class="card border-0 shadow-sm flex-fill">
+                        <div class="card-body text-center bg-light d-flex flex-column">
+                            <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title font-weight-bold mb-3">Nivel Básico</h5>
+                            <h6 class="card-subtitle mb-2 text-primary">$5/mes</h6>
+                            <p class="card-text">Acceso a contenido exclusivo</p>
+                            <a href="https://www.youtube.com/watch?v=5uJ4ncVtgjA" target="_blank" class="btn btn-primary btn-sm mt-auto">Suscribirse</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tier 2 -->
+                <div class="col-lg-4 mb-4 d-flex">
+                    <div class="card border-0 shadow-sm flex-fill">
+                        <div class="card-body text-center bg-light d-flex flex-column">
+                            <i class="fas fa-gem fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title font-weight-bold mb-3">Nivel Intermedio</h5>
+                            <h6 class="card-subtitle mb-2 text-primary">$10/mes</h6>
+                            <p class="card-text">Acceso a todo del Nivel Básico</p>
+                            <p class="card-text">+ No anuncios</p>
+                            <div style="justify-content: center;" class="text-center" id="paypal-button"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Color de fondo suave */
+    }
+    
+    .card {
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .card:hover {
+        transform: translateY(-10px); /* Efecto de elevación al pasar el mouse */
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+</style>
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script>
+paypal.Button.render({
+// Configure environment
+env: 'sandbox',
+client: {
+sandbox: 'AbtXi_z5Q8HIVzlPJRm0ciSYqHTqwy3Iwy_XzUqbuZDj_dvkJWUz6F0FKwo1wzV5Otb2cu6NC2E11yHT',
+production: 'demo_production_client_id'
+},
+// Customize button (optional)
+locale: 'en_US',
+style: {
+size: 'small',
+color: 'gold',
+shape: 'pill',
+},
+// Enable Pay Now checkout flow (optional)
+commit: true,
+// Set up a payment
+payment: function (data, actions) {
+return actions.payment.create({
+transactions: [{
+amount: {
+total: '12.00',
+currency: 'USD'
+}
+}]
+});
+},
+// Execute the payment
+onAuthorize: function (data, actions) {
+return actions.payment.execute().then(function () {
+// Show a confirmation message to the buyer
+window.alert('Thank you for your purchase!');
+});
+}
+}, '#paypal-button');
+</script>
+{% endblock %}

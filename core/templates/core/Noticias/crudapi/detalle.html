@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link    dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link">Apóyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block principal %}
+
+<div class="container-fluid p-3">
+    <div class="title my-1" style="justify-content: center;">
+        <h4 class="text-uppercase font-weight-bold p-3" style="text-align: center;"> Noticia API </h4>
+    </div>
+
+    <div class="row my-3 bg-dark " style="margin-right: 3px; width: 100%;">
+        <div class="col-sm border rounded p-3 my-2 mx-2 " style="height: auto; ">
+            <h1 class="text-white">Detalle noticias API</h1>
+            <h3 class="text-white">ID: {{ noticia.id }} </h3>
+            <h3 class="text-white">TITULO: {{ noticia.titulo }} </h3>
+            <h3 class="text-white">DESCRIPCION: {{ noticia.descripcion }} </h3>
+            <h3 class="text-white">CATEGORIA: {{ noticia.categoria.descripcion }} </h3>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
