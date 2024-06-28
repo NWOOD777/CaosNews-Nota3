@@ -24,7 +24,7 @@ git init --crea la carpeta
 
 
 --github actualizar repo--
-git add . --trackea
-git commit -m "aqui va la wea q querai"
+git add .
+git commit -m "lol"
 git branch -M main
 git push -u origin main
