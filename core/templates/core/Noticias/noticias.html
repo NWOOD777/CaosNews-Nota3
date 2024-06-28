@@ -111,5 +111,11 @@
             </ul>
         </nav>
     </div>
+    <!-- Opción para agregar un nuevo periodista (si el usuario tiene permisos) -->
+    {% if perms.core.add_periodista %}
+    <div class="d-flex">
+        <a class="btn btn-success flex-fill" href="{% url 'addN' %}" style="width: 100%;">Agregar</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
