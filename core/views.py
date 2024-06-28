@@ -15,7 +15,7 @@ from django.core.paginator import Paginator
 def noticiasapi(request):
     try:
         # Obtener noticias desde tu propia API (ejemplo)
-        response_noticias = requests.get('http://127.0.0.1:8000/api/noticias/')
+        response_noticias = requests.get('https://caosnews.vercel.app/api/noticias/')
         response_noticias.raise_for_status()  # Lanza excepción para errores HTTP
         noticias = response_noticias.json()
 
@@ -69,7 +69,7 @@ def noticiasapi(request):
 
 
 def noticiadetalle(request,id):
-    response=requests.get(f'http://127.0.0.1:8000/api/noticias/{id}/')
+    response=requests.get(f'https://caosnews.vercel.app/api/noticias/{id}/')
     noticias = response.json()
     aux = {
         'noticia' : noticias
