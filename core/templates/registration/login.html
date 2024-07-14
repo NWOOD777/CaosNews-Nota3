@@ -29,10 +29,11 @@
         <div class="col-sm border rounded p-3 my-2 mx-2" style="height: auto; ">
             {% load crispy_forms_tags %}
             <form method="POST">
-                {% csrf_token%}
-                {{ form | crispy }}
+                {% csrf_token %}
+                {{ form|crispy }}
                 <input type="submit" class="btn btn-warning" value="Ingresar">
             </form>
+            <a href="{% url 'password_reset' %}" class="btn btn-link mt-2">Recuperar Contraseña</a>
         </div>
     </div>
 </div>
