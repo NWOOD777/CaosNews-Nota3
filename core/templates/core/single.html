@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link ">Apoyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0 float-end" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block principal %}
+
+<!-- News With Sidebar Start -->
+<div class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- News Detail Start -->
+                <div class="position-relative mb-3">
+                    {% if noticia.imagen %}
+                    <img class="img-fluid ml-2" src="{{ noticia.imagen.url }}" alt="" style="width: 98%;">
+                    {% else %}
+                    <img class="img-fluid" src="{% static 'core/img/news-800x500-3.jpg' %}" alt="" style="width: 10%">
+                    {% endif %}
+                    <div class="bg-white border border-top-0 p-4">
+                        <div class="mb-3">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ noticia.categoria }}</a>
+                            <img class="rounded-circle mr-2" src="{% static 'core/img/user.jpg' %}" width="25"
+                                height="25" alt="">
+                            <span>{{ noticia.periodista }}</span>
+                            <span class="ml-3"><i class="far fa-eye mr-2"></i>12345</span>
+                        </div>
+                        <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">{{ noticia.titulo }}</h1>
+                        <p>{{ noticia.descripcion }}</p>
+                    </div>
+                </div>
+                <!-- News Detail End -->
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Social Follow Start -->
+                <div class="mb-3">
+                    <div class="section-title mb-0">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
+                    </div>
+                    <div class="bg-white border border-top-0 p-3">
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none mb-3"
+                            style="background: #39569E;">
+                            <i class="fab fa-facebook-f text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Fans</span>
+                        </a>
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none mb-3"
+                            style="background: #52AAF4;">
+                            <i class="fab fa-twitter text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Followers</span>
+                        </a>
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none mb-3"
+                            style="background: #0185AE;">
+                            <i class="fab fa-linkedin-in text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Connects</span>
+                        </a>
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none mb-3"
+                            style="background: #C8359D;">
+                            <i class="fab fa-instagram text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Followers</span>
+                        </a>
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none mb-3"
+                            style="background: #DC472E;">
+                            <i class="fab fa-youtube text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Subscribers</span>
+                        </a>
+                        <a href="{% url 'contacto' %}" class="d-block w-100 text-white text-decoration-none"
+                            style="background: #055570;">
+                            <i class="fab fa-vimeo-v text-center py-4 mr-3"
+                                style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                            <span class="font-weight-medium">12,345 Followers</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Social Follow End -->
+
+                <!-- Tags Start -->
+                <div class="mb-3">
+                    <div class="section-title mb-0">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Tags</h4>
+                    </div>
+                    <div class="bg-white border border-top-0 p-3">
+                        <div class="d-flex flex-wrap m-n1">
+                            <a href="" class="btn btn-sm btn-outline-secondary m-1">{{ noticia.categoria }}</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tags End -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

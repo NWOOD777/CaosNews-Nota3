@@ -1,0 +1,59 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link    dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link">Apóyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block principal %}
+ <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h1 class="card-title">Clima en {{ clima.ciudad }}</h1>
+            </div>
+            <div class="card-body">
+                {% if clima %}
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Temperatura:</strong> {{ clima.temperatura }}°C
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Descripción:</strong> {{ clima.descripcion }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Humedad:</strong> {{ clima.humedad }}%
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Viento:</strong> {{ clima.viento }} km/h
+                        </li>
+                    </ul>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">
+                        No se pudo obtener el clima en este momento.
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                Datos proporcionados por wttr.in
+            </div>
+        </div>
+    </div>
+{% endblock %}

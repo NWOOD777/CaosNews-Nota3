@@ -1,0 +1,33 @@
+https://sandbox.paypal.com
+
+ClientID: AbtXi_z5Q8HIVzlPJRm0ciSYqHTqwy3Iwy_XzUqbuZDj_dvkJWUz6F0FKwo1wzV5Otb2cu6NC2E11yHT
+
+
+Tienda:
+Correo: sb-klih331361895@business.example.com
+Contraseña: jy9=G-}k
+
+Personal:
+Correo: sb-kftq428377487@personal.example.com
+Contraseña: s#[0RqVM
+
+#Contraseña: #ProyectoCaosNews
+
+
+#nombre del superuser(administrador) admin contraseña admin
+#Gmail paypal: skibidinews777@gmail.com
+#Contraseña: Skibidi777
+#Contraseña Correo: skibidi777
+
+--LOCAL--
+git init --crea la carpeta
+
+
+--github actualizar repo--
+git add .
+git commit -m "lol"
+git branch -M main
+git push -u origin main
+
+--INSTALAR REQUERIMENTS--
+pip install -r requeriments.txt

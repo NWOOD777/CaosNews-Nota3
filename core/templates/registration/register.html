@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+<a href="{% url 'categoria' %}" class="nav-item nav-link">Category</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0" placeholder="Keyword">
+    <div class="input-group-append">
+    </div>
+</div>
+{% endblock %}
+{% block principal %} 
+<div class="container-fluid rounded mt-5 " >
+    <div class="row bg-dark float-mid" style="margin-inline: 10%;">
+        <div class="col-sm border rounded p-3 my-2 mx-2" style="height: auto; ">
+            <h5 class="text-center" style="color: white; ;">Registrarse</h5>
+            {% load crispy_forms_tags %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" value="Registrarse">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

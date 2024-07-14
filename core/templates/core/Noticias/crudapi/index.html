@@ -1,0 +1,153 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link ">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link    dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link">Apóyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+{% block principal %}
+<!-- Sección de Lista de Noticias API -->
+<div class="container-fluid mb-4">
+    <div class="title my-3 d-flex justify-content-center">
+        <h4 class="text-uppercase font-weight-bold p-3 text-center text-dark"> Lista de Noticias API </h4>
+    </div>
+
+    <div class="bg-white border p-3">
+        <div class="table-responsive bg-white mb-3">
+            <table class="table table-hover table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Título / Descripción</th>
+                        <th scope="col">Categoría / Periodista</th>
+                        {% if user.is_staff %}
+                        <th scope="col">Administrar</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aux in lista %}
+                    <tr>
+                        <td style="width: 20%;">
+                            {% if aux.imagen %}
+                            <img class="img-fluid rounded mx-auto d-block" src="{{ aux.imagen }}" alt="Imagen noticia"
+                                style="max-width: 100px;">
+                            {% else %}
+                            <img class="img-fluid rounded mx-auto d-block"
+                                src="{% static 'core/img/news-110x110-3.jpg' %}" alt="Imagen por defecto"
+                                style="max-width: 100px;">
+                            {% endif %}
+                        </td>
+                        <td style="width: 40%;">
+                            <div>
+                                <a class="text-white text-uppercase font-weight-bold" href="{% url 'single' aux.id %}">
+                                    {{ aux.titulo }} </a>
+                                <p class="text-muted">{{ aux.descripcion }}</p>
+                            </div>
+                        </td>
+                        <td style="width: 30%;">
+                            <div>
+                                {% if aux.habilitado %}
+                                <span class="badge badge-success text-uppercase font-weight-semi-bold"> Habilitado
+                                </span>
+                                {% else %}
+                                <span class="badge badge-danger text-uppercase font-weight-semi-bold"> Deshabilitado
+                                </span>
+                                {% endif %}
+                                <br>
+                                <span class="badge badge-primary text-uppercase font-weight-semi-bold">{{ aux.categoria.descripcion }}</span>
+                                <p class="mt-2 text-w">
+                                    <span class="font-weight-bold">Por:</span> {{ aux.periodista.nombre }}
+                                </p>
+                            </div>
+                        </td>
+                        {% if perms.core.change_noticia %}
+                        <td class="align-middle" style="width: 10%;">
+                            <a class="btn btn-primary btn-sm btn-block mb-2"
+                                href="{% url 'noticiasupdate' aux.id %}">Modificar</a>
+                            <button class="btn btn-danger btn-sm btn-block"
+                                onclick="confiEliminarN({{ aux.id }})">Eliminar</button>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% for group in user.groups.all %}
+            {% if group.name == 'periodista' or user.is_staff %}
+            {% if forloop.last %}
+            <a class="btn btn-success btn-block mt-3" href="{% url 'noticiasadd' %}">Agregar Noticia</a>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Clima API -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h1 class="card-title">Clima en {{ clima.ciudad }}</h1>
+        </div>
+        <div class="card-body">
+            {% if clima %}
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Temperatura:</strong> {{ clima.temperatura }}°C
+                </li>
+                <li class="list-group-item">
+                    <strong>Descripción:</strong> {{ clima.descripcion }}
+                </li>
+                <li class="list-group-item">
+                    <strong>Humedad:</strong> {{ clima.humedad }}%
+                </li>
+                <li class="list-group-item">
+                    <strong>Viento:</strong> {{ clima.viento }} km/h
+                </li>
+            </ul>
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                No se pudo obtener el clima en este momento.
+            </div>
+            {% endif %}
+        </div>
+        <div class="card-footer text-muted">
+            Datos proporcionados por wttr.in
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Valor UF, Dólar y Euro API -->
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            Valores Financieros
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Valor UF: {{ uf | floatformat:"2" }}</li>
+            <li class="list-group-item">Valor Dólar: {{ dolar | floatformat:"2" }}</li>
+            <li class="list-group-item">Valor Euro: {{ euro | floatformat:"2" }}</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

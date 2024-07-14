@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block menu %}
+<a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Noticias</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'noticias' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Periodistas</a>
+    <div class="dropdown-menu rounded-0 m-0">
+        <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
+    </div>
+</div>
+<a href="{% url 'servicios' %}" class="nav-item nav-link active">Apoyanos!</a>
+</div>
+<div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+    <input type="text" class="form-control border-0" placeholder="Keyword">
+    <div class="input-group-append">
+        <button class="input-group-text bg-primary text-dark border-0 px-3"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+{% endblock %}
+
+{% block principal %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Comprobante de Compra</h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Nombre del Cliente:</strong> {{ customer_name }}</p>
+                            <p><strong>Email del Cliente:</strong> {{ customer_email }}</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <p><strong>Fecha:</strong> {{ purchase_date }}</p>
+                            <p><strong>ID de Transacción:</strong> {{ transaction_id }}</p>
+                        </div>
+                    </div>
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                                <td>{{ total }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'index' %}" class="btn btn-primary">Volver al Inicio</a>
+                        <button class="btn btn-secondary" onclick="window.print()">Imprimir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
