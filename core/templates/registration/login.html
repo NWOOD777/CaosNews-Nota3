@@ -15,10 +15,7 @@
         <a href="{% url 'periodistas' %}" class="dropdown-item">Listar</a>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 </div>
->>>>>>> 974e573ee1894c7ddfb3789a33240ed611937ca6
 <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
     <input type="text" class="form-control border-0" placeholder="Keyword">
     <div class="input-group-append">
@@ -26,17 +23,12 @@
     </div>
 </div>
 {% endblock %}
-<<<<<<< HEAD
-
-=======
->>>>>>> 974e573ee1894c7ddfb3789a33240ed611937ca6
 {% block principal %} 
 <div class="container-fluid rounded mt-5" style="margin-left: 10%;">
     <div class="row my-3 bg-dark float-mid" style="margin-right: 3px; width: 80%;">
         <div class="col-sm border rounded p-3 my-2 mx-2" style="height: auto; ">
             {% load crispy_forms_tags %}
             <form method="POST">
-<<<<<<< HEAD
                 {% csrf_token %}
                 {{ form|crispy }}
                 <input type="submit" class="btn btn-warning" value="Ingresar">
@@ -48,7 +40,6 @@
     </div>
 </div>
 {% endblock %}
-=======
                 {% csrf_token%}
                 {{ form | crispy }}
                 <input type="submit" class="btn btn-warning" value="Ingresar">
@@ -57,4 +48,3 @@
     </div>
 </div>
 {% endblock %}
->>>>>>> 974e573ee1894c7ddfb3789a33240ed611937ca6
