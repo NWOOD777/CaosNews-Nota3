@@ -36,6 +36,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'di.plazam@duocuc.cl'
+EMAIL_HOST_PASSWORD = 'admin'
+
+
 # Application definition
 
 INSTALLED_APPS = [
