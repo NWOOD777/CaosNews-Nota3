@@ -42,8 +42,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'di.plazam@duocuc.cl'
-EMAIL_HOST_PASSWORD = 'admin'
+EMAIL_HOST_USER = 'plazadiego591@gmail.com'
+EMAIL_HOST_PASSWORD = 'umgp ozcn senk omej'
+DEFAULT_FROM_EMAIL = 'plazadiego591@gmail.com'
 
 
 # Application definition

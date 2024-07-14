@@ -25,7 +25,7 @@ git init --crea la carpeta
 
 --github actualizar repo--
 git add .
-git commit -m "terraria"
+git commit -m "maincraf"
 git branch -M main
 git push -u origin main
 
